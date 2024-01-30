@@ -156,5 +156,22 @@ namespace PracticaCore.Repository
             this.com.Parameters.Clear();
             return insertado;
         }
+
+        public int EliminarPedido(string codigo)
+        {
+            string sql = "DELETE FROM pedidos WHERE CodigoPedido = @codigo";
+            SqlParameter codigoparam = new SqlParameter("@codigo", codigo);
+            this.com.Parameters.Add(codigoparam);
+
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.cn.Open();
+            int eliminado = this.com.ExecuteNonQuery();
+
+            this.cn.Close();
+            this.com.Parameters.Clear();
+            return eliminado;
+        }
     }
 }

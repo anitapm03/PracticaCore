@@ -123,11 +123,22 @@ namespace PracticaCore
                 fecha, forma, importe);
 
             MessageBox.Show("Insertados: " + insertado);
+            
+            this.cmbclientes_SelectedIndexChanged(sender, e);
+            this.txtcodigopedido.Clear();
+            this.txtfechaentrega.Clear();
+            this.txtformaenvio.Clear();
+            this.txtimporte.Clear();
         }
 
         private void btneliminarpedido_Click(object sender, EventArgs e)
         {
+            string codigoPedido = this.lstpedidos.SelectedItem.ToString();
 
+            int eliminado = this.repo.EliminarPedido(codigoPedido);
+
+            MessageBox.Show("Eliminados: " + eliminado);
+            this.cmbclientes_SelectedIndexChanged(sender, e);
         }
     }
 }
